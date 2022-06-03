@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sales
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`skidka.rocks`) && PathPrefix(`/rest`)
+      kind: Rule
+      services:
+        - name: sales-backend-cluster-ip
+          port: 8080
+    - match: Host(`skidka.rocks`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: sales-frontend-cluster-ip
+          port: 80
+  tls:
+    certResolver: letsencrypt

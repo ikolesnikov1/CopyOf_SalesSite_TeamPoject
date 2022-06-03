@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sales-backend
+  labels:
+    end: sales-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      end: sales-backend
+  template:
+    metadata:
+      labels:
+        end: sales-backend
+    spec:
+      containers:
+      - name: sales-backend
+        image: memph11s/sales-backend
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sales-frontend
+  labels:
+    end: sales-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      end: sales-frontend
+  template:
+    metadata:
+      labels:
+        end: sales-frontend
+    spec:
+      containers:
+      - name: sales-frontend
+        image: memph11s/sales-frontend
+        ports:
+        - containerPort: 80
